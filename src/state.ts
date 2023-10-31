@@ -10,7 +10,6 @@ import { mutators } from '../reflect/mutators.js'
  */
 export function State ():{
     route:Signal<string>;
-    count:Signal<number>;
     reflection:Signal<number>;
     _reflect:InstanceType<typeof Reflect>
     _setRoute:(path:string)=>void;
@@ -32,7 +31,6 @@ export function State ():{
         _reflect: r,
         reflection: signal<number>(0),
         _setRoute: onRoute.setRoute.bind(onRoute),
-        count: signal<number>(0),
         route: signal<string>(location.pathname + location.search)
     }
 
@@ -54,13 +52,19 @@ export function State ():{
     return state
 }
 
+/**
+ * Our state update functions only call methods on the reflect object. We don't
+ * set our UI state manuallyThe
+ * reflect object has methods from the mutators that we passed in earlier.
+ *
+ * The UI hears the state change because we subscribed to any changes in
+ * reflect's state in the constructor.
+ */
 export function Increase (state:ReturnType<typeof State>) {
-    // state.count.value++
     console.log('increase', state)
     state._reflect.mutate.increment({ key: 'count', delta: 1 })
 }
 
 export function Decrease (state:ReturnType<typeof State>) {
-    // state.count.value--
     state._reflect.mutate.decrement({ key: 'count', delta: 1 })
 }
