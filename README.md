@@ -7,6 +7,11 @@ Created with
 npx @rocicorp/reflect@latest init
 ```
 
+## demo
+Deployment works. See a live demo at https://nichoth-reflection.netlify.app/.
+
+Open a second browser window (private, so you're not using the same local storage), and see that the state is synchronized in both windows.
+
 ## develop
 
 Start the local dev environment:
