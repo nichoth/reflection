@@ -8,7 +8,7 @@
     "build-tests": "esbuild test/index.ts --bundle --format=cjs --keep-names > test/test-bundle.js",
     "test": "npm run lint && npm run build && npm run build-tests && npm run test-tape-run",
     "test-tape-run": "cat test/index.html | tape-run --input=html --static=test | tap-arc",
-    "build": "mkdir -p ./public && rm -rf ./public/* && tsc --project tsconfig.build.json",
+    "build": "mkdir -p ./public && rm -rf ./public/* && vite build",
     "start": "concurrently --kill-others \"reflect dev\" \"vite\"",
     "deploy": "reflect publish",
     "preversion": "npm run lint",
