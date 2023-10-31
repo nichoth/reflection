@@ -20,13 +20,24 @@ import type { WriteTransaction } from '@rocicorp/reflect'
 
 export const mutators = {
     increment,
+    decrement
 }
 
 export type M = typeof mutators;
 
-async function increment (
+async function decrement (
     tx: WriteTransaction,
-    { key, delta }: {key: string; delta: number},
+    { key, delta }:{ key:string, delta:number }
+) {
+    console.log(`decrement ${key} by ${delta}`)
+    const prev = await tx.get<number>(key)
+    const next = (prev || 0) - delta
+    await tx.set(key, next)
+}
+
+async function increment (
+    tx:WriteTransaction,
+    { key, delta }:{key: string; delta: number},
 ) {
     console.log(`incrementing ${key} by ${delta}`)
     const prev = await tx.get<number>(key)
