@@ -20,6 +20,7 @@
     "@nichoth/components": "^0.9.1",
     "@nichoth/routes": "^3.0.7",
     "@preact/signals": "^1.2.1",
+    "@rocicorp/reflect": "^0.36.202310310758",
     "htm": "^3.1.1",
     "preact": "^10.18.1",
     "route-event": "^4.1.10"
