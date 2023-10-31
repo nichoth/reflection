@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "lib": ["esnext"],
-    "moduleResolution": "node",
     "declaration": true,
     "incremental": true
   },

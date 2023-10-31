@@ -9,7 +9,7 @@
     "lib": ["ES2022", "DOM", "WebWorker"],
     "allowJs": false,
     "skipLibCheck": true,
-    "outDir": "dist",
+    "outDir": "public",
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
@@ -22,7 +22,7 @@
     "jsxImportSource": "preact",
     "noImplicitAny": false,
     "declaration": true,
-    "declarationDir": "dist",
+    "declarationDir": "public",
     "declarationMap": true
   },
   "include": [

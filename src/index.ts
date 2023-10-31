@@ -42,7 +42,7 @@ export function Example () {
         </ul>
 
         <div>
-            <div>count: ${state.count.value}</div>
+            <div>count: ${state.reflection.value}</div>
             <ul class="count-controls">
                 <li>
                     <${ButtonOutlinePrimary} onClick=${plus}>
