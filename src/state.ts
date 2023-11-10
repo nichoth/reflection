@@ -20,7 +20,7 @@ export function State ():{
         'http://localhost:8080' :
         'https://reflection-nichoth.reflect-server.net/')
 
-    const r = new Reflect({
+    const reflect = new Reflect({
         userID: 'alice',
         roomID: 'myRoom',
         server: serverURL,
@@ -28,19 +28,16 @@ export function State ():{
     })
 
     const state = {
-        _reflect: r,
-        reflection: signal<number>(0),
+        _reflect: reflect,
         _setRoute: onRoute.setRoute.bind(onRoute),
+        reflection: signal<number>(0),
         route: signal<string>(location.pathname + location.search)
     }
 
-    r.subscribe(
-        (tx) => tx.get('count'),
-        (count) => {
-            console.log('subscription', count)
-            state.reflection.value = (count as number ?? 0)
-        }
-    )
+    reflect.subscribe(tx => tx.get('count'), (count) => {
+        console.log('subscription', count)
+        state.reflection.value = (count as number ?? 0)
+    })
 
     // set the app state to match the browser URL
     onRoute((path:string) => {
@@ -64,7 +61,9 @@ export function Increase (state:ReturnType<typeof State>) {
     console.log('increase', state)
     state._reflect.mutate.increment({ key: 'count', delta: 1 })
 }
+State.Increase = Increase
 
 export function Decrease (state:ReturnType<typeof State>) {
     state._reflect.mutate.decrement({ key: 'count', delta: 1 })
 }
+State.Decrease = Decrease

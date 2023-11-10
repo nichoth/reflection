@@ -43,5 +43,6 @@ npm run deploy
 
 > Note that you will have to change the server in the Reflect constructor to point to your remote Reflect server (i.e., `https://my-app-my-user.reflect-server.net`).
 
-The frontend is automatically deployed on any git push via Netlify.
+We do this [in ./src/state](./src/state.ts#L19)
 
+The frontend is automatically deployed on any git push via Netlify.
