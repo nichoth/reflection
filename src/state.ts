@@ -24,6 +24,7 @@ export function State ():{
         userID: 'alice',
         roomID: 'myRoom',
         server: serverURL,
+        auth: '123',
         mutators,
     })
 

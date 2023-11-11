@@ -44,5 +44,37 @@ npm run deploy
 > Note that you will have to change the server in the Reflect constructor to point to your remote Reflect server (i.e., `https://my-app-my-user.reflect-server.net`).
 
 We do this [in ./src/state](./src/state.ts#L19)
+```js
+const serverURL = (import.meta.env.DEV ?
+    'http://localhost:8080' :
+    'https://reflection-nichoth.reflect-server.net/')
+```
 
 The frontend is automatically deployed on any git push via Netlify.
+
+
+## queries
+[hello.reflect.net/subscriptions#queries](https://hello.reflect.net/subscriptions#queries)
+
+> The function that is passed to subscribe is called a query
+
+So in our example,
+```js
+reflect.subscribe(tx => tx.get('count'), (count) => {
+    console.log('subscription', count)
+    state.reflection.value = (count as number ?? 0)
+})
+```
+
+> to subscribe to all incomplete todos:
+```js
+r.subscribe(
+    async (tx) => {
+        const todos = await tx.scan({ prefix: `/todo/` }).toArray();
+        return todos.filter((t) => !t.complete);
+    },
+    (todos) => {
+        // render todos
+    }
+);
+```
